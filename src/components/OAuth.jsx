@@ -15,6 +15,7 @@ export default function OAuth() {
       const result = await signInWithPopup(auth, provider)
       const user = result.user
 
+      // check if user exists
       const docRef = doc(db, 'users', user.uid);
       const docSnap = await getDoc(docRef);
 
@@ -26,6 +27,7 @@ export default function OAuth() {
         })
       }
       navigate('/')
+      toast.success('Login Successfully')
     } catch (error) {
       toast.error('Something get wrong with Google')
       
